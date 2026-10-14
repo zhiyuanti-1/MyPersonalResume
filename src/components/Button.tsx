@@ -3,10 +3,11 @@ import type { ReactNode } from "react";
 type ButtonProps = {
   href: string;
   variant?: "solid" | "ghost";
+  download?: boolean | string;
   children: ReactNode;
 };
 
-export function Button({ href, variant = "solid", children }: ButtonProps) {
+export function Button({ href, variant = "solid", download, children }: ButtonProps) {
   const base =
     "inline-flex items-center gap-2 px-5 py-3 font-mono text-xs tracking-[0.15em] transition-colors duration-200";
   const styles =
@@ -15,7 +16,7 @@ export function Button({ href, variant = "solid", children }: ButtonProps) {
       : "border border-ink text-ink hover:border-accent hover:text-accent";
 
   return (
-    <a className={`${base} ${styles}`} href={href}>
+    <a className={`${base} ${styles}`} href={href} download={download}>
       {children}
     </a>
   );
