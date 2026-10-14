@@ -1,11 +1,18 @@
-import { profile } from "./data/resume";
+import { HashRouter, Route, Routes } from "react-router-dom";
+import { ScrollToTop } from "./components/ScrollToTop";
+import { Home } from "./pages/Home";
+import { NotFound } from "./pages/NotFound";
+import { ProjectDetail } from "./pages/ProjectDetail";
 
 export default function App() {
   return (
-    <main className="display flex min-h-screen items-center justify-center bg-paper">
-      <h1 className="text-4xl">
-        {profile.name} · {profile.role}
-      </h1>
-    </main>
+    <HashRouter>
+      <ScrollToTop />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/project/:slug" element={<ProjectDetail />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </HashRouter>
   );
 }
