@@ -1,4 +1,3 @@
-import { animate, useInView, useReducedMotion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
 type CountUpProps = {
@@ -7,6 +6,14 @@ type CountUpProps = {
 };
 
 const NUMERIC = /^([^\d]*)(\d[\d,]*)(.*)$/;
+const DURATION = 450;
+const reduceMotionQuery = "(prefers-reduced-motion: reduce)";
+
+function prefersReducedMotion() {
+  return typeof window !== "undefined" && window.matchMedia(reduceMotionQuery).matches;
+}
+
+const easeOut = (t: number) => 1 - (1 - t) ** 3;
 
 /**
  * 数字滚动计数。仅当值为「前导数字」形式（如 "3 个"、"+70%"）时动画，
@@ -14,8 +21,7 @@ const NUMERIC = /^([^\d]*)(\d[\d,]*)(.*)$/;
  */
 export function CountUp({ value, className }: CountUpProps) {
   const ref = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-40px" });
-  const reduceMotion = useReducedMotion();
+  const [reduceMotion] = useState(prefersReducedMotion);
 
   const match = NUMERIC.exec(value);
   const isNumeric = match !== null;
@@ -27,15 +33,38 @@ export function CountUp({ value, className }: CountUpProps) {
   const [current, setCurrent] = useState<number | null>(null);
 
   useEffect(() => {
-    if (!isNumeric || reduceMotion || !inView) return;
-    setCurrent(0);
-    const controls = animate(0, target, {
-      duration: 0.45,
-      ease: "easeOut",
-      onUpdate: (latest) => setCurrent(Math.round(latest)),
-    });
-    return () => controls.stop();
-  }, [isNumeric, reduceMotion, inView, target]);
+    if (!isNumeric || reduceMotion) return;
+
+    const node = ref.current;
+    if (!node || typeof IntersectionObserver === "undefined") return;
+
+    let frame = 0;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (!entries.some((entry) => entry.isIntersecting)) return;
+        observer.disconnect();
+
+        const start = performance.now();
+        const tick = (now: number) => {
+          const progress = Math.min((now - start) / DURATION, 1);
+          setCurrent(Math.round(target * easeOut(progress)));
+          if (progress < 1) {
+            frame = requestAnimationFrame(tick);
+          } else {
+            setCurrent(target);
+          }
+        };
+        frame = requestAnimationFrame(tick);
+      },
+      { rootMargin: "-40px" },
+    );
+
+    observer.observe(node);
+    return () => {
+      observer.disconnect();
+      if (frame) cancelAnimationFrame(frame);
+    };
+  }, [isNumeric, reduceMotion, target]);
 
   if (!isNumeric) {
     return <span className={className}>{value}</span>;

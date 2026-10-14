@@ -1,18 +1,53 @@
-import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Button } from "../components/Button";
 import { PhotoFrame } from "../components/PhotoFrame";
 import { Reveal } from "../components/Reveal";
 import { profile } from "../data/resume";
 
 const base = import.meta.env.BASE_URL;
+const reduceMotionQuery = "(prefers-reduced-motion: reduce)";
+
+function prefersReducedMotion() {
+  return typeof window !== "undefined" && window.matchMedia(reduceMotionQuery).matches;
+}
 
 export function Hero() {
   const contacts = [profile.email, profile.phone, profile.city];
   const photoRef = useRef<HTMLDivElement>(null);
-  const reduceMotion = useReducedMotion();
-  const { scrollYProgress } = useScroll({ target: photoRef, offset: ["start start", "end start"] });
-  const parallaxY = useTransform(scrollYProgress, [0, 1], [0, -40]);
+  const parallaxRef = useRef<HTMLDivElement>(null);
+  const [reduceMotion] = useState(prefersReducedMotion);
+
+  useEffect(() => {
+    const frameNode = parallaxRef.current;
+    if (!frameNode) return;
+
+    if (reduceMotion) {
+      frameNode.style.transform = "";
+      return;
+    }
+
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      const node = photoRef.current;
+      if (!node) return;
+      const rect = node.getBoundingClientRect();
+      const progress = rect.height > 0 ? Math.min(Math.max(-rect.top / rect.height, 0), 1) : 0;
+      frameNode.style.transform = `translateY(${(-40 * progress).toFixed(2)}px)`;
+    };
+    const schedule = () => {
+      if (!frame) frame = requestAnimationFrame(update);
+    };
+
+    update();
+    window.addEventListener("scroll", schedule, { passive: true });
+    window.addEventListener("resize", schedule);
+    return () => {
+      if (frame) cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", schedule);
+      window.removeEventListener("resize", schedule);
+    };
+  }, [reduceMotion]);
 
   return (
     <section className="mx-auto w-full max-w-6xl px-6 pb-16 pt-20 sm:px-8 sm:pb-24 sm:pt-28">
@@ -41,12 +76,12 @@ export function Hero() {
           </div>
         </Reveal>
         <div ref={photoRef} className="flex justify-center md:justify-end">
-          <motion.div style={reduceMotion ? undefined : { y: parallaxY }}>
+          <div ref={parallaxRef}>
             <PhotoFrame
               src={profile.photo ? base + profile.photo : ""}
               alt={`${profile.name} 的证件照`}
             />
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>
