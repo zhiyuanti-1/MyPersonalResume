@@ -1,3 +1,28 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --paper: #fafaf7;
+  --ink: #111111;
+  --accent: #e4572e;
+  --muted: #6b6b6b;
+  --rule: #e5e2da;
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: Inter, system-ui, "PingFang SC", "Microsoft YaHei", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.display {
+  font-family: "Noto Serif SC", "Songti SC", "SimSun", serif;
+  letter-spacing: 0.01em;
+}
+
+.paper-grain {
+  background-image: radial-gradient(rgba(0, 0, 0, 0.025) 1px, transparent 1px);
+  background-size: 3px 3px;
+}
