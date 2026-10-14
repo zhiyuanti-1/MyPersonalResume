@@ -29,8 +29,4 @@ export const huiyiErp: ProjectDetail = {
     { label: "范围", value: "订单录入页重制" },
     { label: "公司反馈", value: "奖金肯定" },
   ],
-  architecture: [
-    { label: "重制分层", nodes: ["页面", "组件", "请求", "服务"], note: "订单录入页重制，分层降低耦合" },
-    { label: "成果", nodes: ["商务订单效率 +70%"], note: "获公司奖金肯定" },
-  ],
 };
