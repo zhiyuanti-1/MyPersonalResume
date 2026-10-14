@@ -35,4 +35,10 @@ export const pixelLife: ProjectDetail = {
     { label: "核心模块", value: "3 个" },
     { label: "外部服务", value: "3 项" },
   ],
+  architecture: [
+    { label: "架构分层", nodes: ["Fragment", "ViewModel", "Repository", "DAO"], note: "MVVM" },
+    { label: "数据", nodes: ["Room 数据库"], note: "5 张表 / 6 次版本迁移" },
+    { label: "外部服务", nodes: ["百度 OCR", "百度语音", "DeepSeek API"] },
+    { label: "提醒", nodes: ["AlarmManager 后台定时提醒"] },
+  ],
 };

@@ -34,4 +34,8 @@ export const huiyiOkr: ProjectDetail = {
     { label: "独立交付链路", value: "数据库表设计 → 后端接口 → 前端页面" },
     { label: "核心操作", value: "任务创建 / 分配 / 追踪" },
   ],
+  architecture: [
+    { label: "交付链路", nodes: ["数据库表设计", "后端接口", "前端页面"], note: "独立完成全流程开发" },
+    { label: "业务闭环", nodes: ["目标", "关键结果", "任务"], note: "「目标-关键结果-任务」管理闭环" },
+  ],
 };

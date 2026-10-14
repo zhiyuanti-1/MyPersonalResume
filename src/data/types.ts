@@ -38,4 +38,5 @@ export type ProjectDetail = ProjectSummary & {
   background: string[];
   challenges: { title: string; detail: string }[];
   metrics: { label: string; value: string }[];
+  architecture?: { label: string; nodes: string[]; note?: string }[];
 };

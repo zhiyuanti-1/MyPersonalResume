@@ -34,4 +34,14 @@ export const zhongkeXingtu: ProjectDetail = {
     { label: "接入方式", value: "同源同标签页" },
     { label: "统一 HTTP 客户端", value: "1 套" },
   ],
+  architecture: [
+    {
+      label: "接入",
+      nodes: ["主平台 Shell", "3 个 React 子应用"],
+      note: "npm workspaces 独立构建 / 独立部署，同源同标签页接入",
+    },
+    { label: "开发态", nodes: ["Vite 反向代理 /apps/<name>"], note: "打通主平台联调" },
+    { label: "生产态", nodes: ["Nginx 网关", "按路径托管"] },
+    { label: "横切能力", nodes: ["统一 HTTP 客户端", "路由级 Token 校验"] },
+  ],
 };

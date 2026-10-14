@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { Fragment, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { CountUp } from "../components/CountUp";
 import { Reveal } from "../components/Reveal";
@@ -25,6 +25,8 @@ export function ProjectDetail() {
   if (!project) {
     return <NotFound />;
   }
+
+  const architecture = project.architecture ?? [];
 
   return (
     <main className="mx-auto w-full max-w-5xl overflow-x-hidden px-6 pb-24 pt-20 sm:px-8 sm:pt-28">
@@ -93,6 +95,42 @@ export function ProjectDetail() {
       <Reveal>
         <section className="mt-16">
           <SectionHeading index="02" title="难点与方案" />
+          {architecture.length > 0 ? (
+            <div className="mb-12">
+              <span className="font-mono text-xs uppercase tracking-[0.25em] text-muted">
+                架构示意 / ARCHITECTURE
+              </span>
+              <div className="mt-5 space-y-5">
+                {architecture.map((layer) => (
+                  <div
+                    key={layer.label}
+                    className="grid gap-3 border-t border-rule pt-5 sm:grid-cols-[7rem_1fr] sm:gap-6"
+                  >
+                    <span className="font-mono text-xs tracking-[0.2em] text-accent">{layer.label}</span>
+                    <div className="min-w-0">
+                      <div className="flex flex-wrap items-center gap-x-3 gap-y-3">
+                        {layer.nodes.map((node, nodeIndex) => (
+                          <Fragment key={node}>
+                            {nodeIndex > 0 ? (
+                              <span className="font-mono text-xs text-accent" aria-hidden="true">
+                                →
+                              </span>
+                            ) : null}
+                            <span className="max-w-full break-words border border-ink/20 bg-paper px-3 py-2 font-mono text-xs leading-snug text-ink">
+                              {node}
+                            </span>
+                          </Fragment>
+                        ))}
+                      </div>
+                      {layer.note ? (
+                        <p className="mt-2.5 text-xs leading-relaxed text-muted">{layer.note}</p>
+                      ) : null}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ) : null}
           <div className="space-y-8">
             {project.challenges.map((challenge, index) => (
               <div key={challenge.title} className="grid gap-3 border-t border-rule pt-6 sm:grid-cols-[auto_1fr] sm:gap-8">

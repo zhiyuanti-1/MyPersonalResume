@@ -30,7 +30,7 @@ export function CountUp({ value, className }: CountUpProps) {
     if (!isNumeric || reduceMotion || !inView) return;
     setCurrent(0);
     const controls = animate(0, target, {
-      duration: 0.9,
+      duration: 0.45,
       ease: "easeOut",
       onUpdate: (latest) => setCurrent(Math.round(latest)),
     });
