@@ -12,7 +12,7 @@ export function About() {
           <div>
             <p className="text-lg leading-relaxed text-ink">{profile.tagline}</p>
             <p className="mt-4 text-sm leading-relaxed text-muted">
-              以 {profile.role} 为目标，{profile.education}，现居{profile.city}。
+              以{profile.role}为目标，{profile.education}，现居{profile.city}。
             </p>
           </div>
           <div className="space-y-8">

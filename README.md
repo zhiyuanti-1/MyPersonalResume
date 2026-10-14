@@ -31,6 +31,8 @@ npm run preview    # 本地预览构建产物
 2. 在仓库 **Settings → Pages → Build and deployment** 中，把 **Source** 设为 **GitHub Actions**。
 3. 之后每次 push 到 `main` 都会自动构建并发布，无需手动操作。
 
+> 注意：若首次部署前忘记在 **Settings → Pages** 把 **Source** 设为 **GitHub Actions**，第一次 workflow 会失败，属正常现象；设置后重新运行即可。
+
 > 注意：GitHub Actions 在 Linux 云端运行，不受本机限制；本地若无法直接构建，仍可依赖此方式。
 
 ### 方式 B：本地构建 + 推送 `gh-pages` 分支
@@ -43,7 +45,7 @@ cd dist
 git init
 git add -A
 git commit -m "deploy"
-git push -f https://github.com/<用户名>/<仓库名>.git main:gh-pages
+git push -f https://github.com/<用户名>/<仓库名>.git HEAD:gh-pages
 ```
 
 随后在 **Settings → Pages → Build and deployment** 中把 **Source** 设为 **Deploy from a branch**，分支选 `gh-pages` / `/(root)`。

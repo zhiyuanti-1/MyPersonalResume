@@ -16,7 +16,9 @@ export function ProjectDetail() {
   const project = slug ? projectsBySlug[slug] : undefined;
 
   useEffect(() => {
-    document.title = project ? `${project.title} · ${profile.name}` : `${profile.name} · ${profile.role}`;
+    if (project) {
+      document.title = `${project.title} · ${profile.name}`;
+    }
     return () => {
       document.title = `${profile.name} · ${profile.role}`;
     };

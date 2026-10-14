@@ -1,6 +1,15 @@
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
+import { profile } from "../data/resume";
 
 export function NotFound() {
+  useEffect(() => {
+    document.title = `页面未找到 · ${profile.name}`;
+    return () => {
+      document.title = `${profile.name} · ${profile.role}`;
+    };
+  }, []);
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-center bg-paper px-6 text-center">
       <span className="font-mono text-xs tracking-[0.35em] text-accent">404</span>
