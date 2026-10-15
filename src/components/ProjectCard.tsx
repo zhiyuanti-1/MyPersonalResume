@@ -1,3 +1,4 @@
+import { motion, useReducedMotion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Tag } from "./Tag";
 import type { ProjectSummary } from "../data/types";
@@ -7,17 +8,22 @@ type ProjectCardProps = {
 };
 
 const base = import.meta.env.BASE_URL;
+const MotionLink = motion.create(Link);
 
 export function ProjectCard({ project }: ProjectCardProps) {
+  const reduceMotion = useReducedMotion();
+
   return (
-    <Link
+    <MotionLink
       to={`/project/${project.slug}`}
-      className="group block transition-transform duration-300 hover:-translate-y-1"
+      className="group block"
+      whileHover={reduceMotion ? undefined : { y: -4 }}
+      transition={{ type: "spring", stiffness: 320, damping: 28 }}
     >
       <div className="relative aspect-[16/10] overflow-hidden border border-rule bg-[#efece4]">
         {project.cover ? (
           <img
-            className="h-full w-full object-contain"
+            className="h-full w-full object-contain transition-transform duration-500 ease-out group-hover:scale-[1.03]"
             src={base + project.cover}
             alt={project.title}
             loading="lazy"
@@ -48,6 +54,6 @@ export function ProjectCard({ project }: ProjectCardProps) {
           <Tag key={tag}>{tag}</Tag>
         ))}
       </div>
-    </Link>
+    </MotionLink>
   );
 }
