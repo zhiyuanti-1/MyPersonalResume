@@ -3,11 +3,11 @@ import type { ProjectDetail } from "../types";
 export const zhongkeXingtu: ProjectDetail = {
   slug: "zhongke-xingtu",
   title: "中科星图 · 可拆卸子应用架构",
-  subtitle: "3 个 React 子应用的独立构建、独立部署与同源接入",
+  subtitle: "云海平台前端主导开发：3 个 React 子应用独立构建、独立部署与同源接入",
   tags: ["React 19", "TypeScript", "Ant Design", "Vite", "npm workspaces", "GIS"],
   cover: "images/projects/zhongke-xingtu/login.jpg",
   overview:
-    "面向主平台与多个业务子应用的解耦需求，参与可拆卸架构的搭建：子应用独立构建、独立部署、按需接入，主平台与子应用在开发态与生产态都能同源打通。",
+    "主导云海平台前端开发：面向主平台与多个业务子应用的解耦需求，搭建可拆卸架构，子应用独立构建、独立部署、按需接入，主平台与子应用在开发态与生产态都能同源打通。",
   background: [
     "主平台承载多个业务线，子应用与主平台代码耦合，构建与上线相互牵制，难以按需交付。",
     "子应用之间的登录态与请求规范不统一，跨应用 token 校验缺失，接口错误处理分散，问题定位成本高。",
