@@ -5,7 +5,7 @@ export const zhongkeXingtu: ProjectDetail = {
   title: "中科星图 · 可拆卸子应用架构",
   subtitle: "3 个 React 子应用的独立构建、独立部署与同源接入",
   tags: ["React 19", "TypeScript", "Ant Design", "Vite", "npm workspaces", "GIS"],
-  cover: "",
+  cover: "images/projects/zhongke-xingtu/login.jpg",
   overview:
     "面向主平台与多个业务子应用的解耦需求，参与可拆卸架构的搭建：子应用独立构建、独立部署、按需接入，主平台与子应用在开发态与生产态都能同源打通。",
   background: [
@@ -43,5 +43,12 @@ export const zhongkeXingtu: ProjectDetail = {
     { label: "开发态", nodes: ["Vite 反向代理 /apps/<name>"], note: "打通主平台联调" },
     { label: "生产态", nodes: ["Nginx 网关", "按路径托管"] },
     { label: "横切能力", nodes: ["统一 HTTP 客户端", "路由级 Token 校验"] },
+  ],
+  gallery: [
+    { src: "images/projects/zhongke-xingtu/login.jpg", caption: "云海平台登录页" },
+    { src: "images/projects/zhongke-xingtu/task.jpg", caption: "任务处理页" },
+    { src: "images/projects/zhongke-xingtu/data.jpg", caption: "数据管理页" },
+    { src: "images/projects/zhongke-xingtu/log.jpg", caption: "日志页" },
+    { src: "images/projects/zhongke-xingtu/service.jpg", caption: "服务发布" },
   ],
 };

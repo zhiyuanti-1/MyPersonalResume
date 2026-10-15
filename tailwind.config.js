@@ -12,7 +12,7 @@ export default {
       },
       fontFamily: {
         serif: ['"Noto Serif SC"', "serif"],
-        mono: ['"JetBrains Mono"', "ui-monospace", "SFMono-Regular", "Menlo", "monospace"],
+        mono: ['"JetBrains Mono"', '"Cascadia Mono"', "Consolas", "ui-monospace", "SFMono-Regular", "Menlo", "monospace"],
       },
     },
   },

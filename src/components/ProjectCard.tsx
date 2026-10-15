@@ -17,7 +17,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
       <div className="relative aspect-[16/10] overflow-hidden border border-rule bg-[#efece4]">
         {project.cover ? (
           <img
-            className="h-full w-full object-cover"
+            className="h-full w-full object-contain"
             src={base + project.cover}
             alt={project.title}
             loading="lazy"
