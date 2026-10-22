@@ -1,9 +1,9 @@
-import type { ExperienceItem, Profile, SkillGroup } from "./types";
+import type { CapabilityDimension, ExperienceItem, Profile, SkillGroup } from "./types";
 
 export const profile: Profile = {
   name: "郑宇韬",
   role: "前端工程师",
-  tagline: "以 React 为主线的前端开发实习生，擅长把产品原型落地为可交互、可维护的界面。",
+  tagline: "以 React 为主线的前端开发，技术、沟通与业务落地并重，能把需求稳定推进到上线。",
   gender: "男",
   birth: "2004-11",
   city: "浙江省金华市",
@@ -37,6 +37,50 @@ export const skillGroups: SkillGroup[] = [
   {
     title: "GIS（了解）",
     items: ["CesiumJS", "Leaflet"],
+  },
+];
+
+export const capabilityDimensions: CapabilityDimension[] = [
+  {
+    title: "技术能力",
+    summary: "以 React 为主线，能独立完成从数据库设计到前端交付的全流程；持续跟进 AI 与新工具。",
+    evidence: [
+      "3 个 React 子应用的可拆卸架构，独立构建、独立部署、同源接入。",
+      "OKR 任务模块从数据库表设计到前后端开发全流程落地。",
+      "OCR、语音与大模型三类外部服务的集成与降级处理。",
+      "持续使用 Dify、Claude Code、Codex、Trae，并本地部署大模型与开源 AI 项目。",
+    ],
+    tags: ["React / TypeScript", "Java 全栈", "GIS", "AI 工程化"],
+  },
+  {
+    title: "沟通协作",
+    summary: "习惯先听懂业务语言，再翻译成系统需求；能在业务、技术与管理层之间推进共识。",
+    evidence: [
+      "独立对接业务、工勘、仓管与商务，交付 15 张业务报表与表单。",
+      "协调多部门确认 10+ 关键节点及超时、出错规则。",
+      "有课程与项目答辩经验，能把方案讲清、把取舍说明白。",
+    ],
+    tags: ["需求对接", "跨部门协作", "方案汇报"],
+  },
+  {
+    title: "交付落地",
+    summary: "关注从需求到上线的闭环，而不只是代码写完；习惯先对齐范围，再安排节奏与资源。",
+    evidence: [
+      "需求对接按 6 个阶段推进，每个阶段都有明确输出物。",
+      "实施按 6 周基线规划：调研、配置、联调、数据、UAT、上线交接。",
+      "部署架构按访问、安全、应用、集成、数据、运维 6 层梳理；成本按角色 × 人天估算并预留风险。",
+    ],
+    tags: ["实施规划", "部署架构", "成本估算", "验收交接"],
+  },
+  {
+    title: "工作方式",
+    summary: "能独立负责一块业务，也能长期在一线跑；对结果负责，遇到问题先定位再推进。",
+    evidence: [
+      "ERP 订单页重制后商务订单效率提升 70%，获公司奖金肯定。",
+      "可长期出差 / 驻场，持驾照，全国范围服从调配。",
+      "性格开朗，抗压能力强，能快速融入新团队与新业务。",
+    ],
+    tags: ["责任心", "抗压", "出差驻场", "适应力"],
   },
 ];
 

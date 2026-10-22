@@ -44,6 +44,40 @@ export const zhongkeXingtu: ProjectDetail = {
     { label: "生产态", nodes: ["Nginx 网关", "按路径托管"] },
     { label: "横切能力", nodes: ["统一 HTTP 客户端", "路由级 Token 校验"] },
   ],
+  business: {
+    caseLabel: "平台落地片段 / CASE",
+    scenarios: [
+      {
+        title: "多业务线统一门户",
+        detail:
+          "客户希望一个入口访问多条业务线，新增业务按子应用独立上线，不影响主平台既有功能与版本节奏。",
+      },
+      {
+        title: "GIS / 空天信息演示",
+        detail:
+          "CesiumJS / Leaflet 地图能力可作为客户演示入口，按项目加载图层、任务与业务数据，直观呈现业务价值。",
+      },
+      {
+        title: "分阶段交付与报价",
+        detail:
+          "按子应用拆分范围与报价，先上线核心业务，再逐步接入，降低客户一次性投入与决策风险。",
+      },
+    ],
+    caseSnippet: {
+      context: "主平台承载多业务线，子应用与主平台代码耦合，构建与上线相互牵制，新业务接入周期不可控。",
+      action:
+        "以 npm workspaces 拆分 3 个 React 子应用；开发态用 Vite 反向代理联调，生产态由 Nginx / 网关按路径托管；统一 HTTP 客户端与路由级 Token 校验。",
+      result:
+        "3 个子应用可独立构建、独立部署、按需接入，主平台与子应用同源同标签页访问，新增业务无需改动主平台。",
+    },
+    deliveryStandards: [
+      "接入清单：明确子应用名称、路径、权限与负责人，双方确认后实施。",
+      "环境一致：测试与生产的域名、证书、反向代理路径保持一致，避免上线返工。",
+      "回滚可执行：按路径切换回退，保留上一版本静态资源与配置。",
+      "联调留痕：接口、鉴权与跨域问题形成问题清单并逐项闭环。",
+      "交付文档：提供子应用接入指南、路由与权限矩阵。",
+    ],
+  },
   gallery: [
     { src: "images/projects/zhongke-xingtu/login.jpg", caption: "云海平台登录页" },
     { src: "images/projects/zhongke-xingtu/task.jpg", caption: "任务处理页" },

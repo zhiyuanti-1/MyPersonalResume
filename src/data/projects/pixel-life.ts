@@ -41,6 +41,40 @@ export const pixelLife: ProjectDetail = {
     { label: "外部服务", nodes: ["百度 OCR", "百度语音", "DeepSeek API"] },
     { label: "提醒", nodes: ["AlarmManager 后台定时提醒"] },
   ],
+  business: {
+    caseLabel: "产品化验证 / CASE",
+    scenarios: [
+      {
+        title: "家庭库存与保质期管理",
+        detail:
+          "面向家庭食品、日用品场景，OCR 拍照与语音录入降低录入门槛，适合作为 C 端效率工具或平台增值功能。",
+      },
+      {
+        title: "轻量门店库存原型",
+        detail:
+          "可延展为社区团购、生鲜门店的轻量库存与临期提醒工具，本地存储适合隐私敏感、网络不稳定的场景。",
+      },
+      {
+        title: "AI 能力集成演示",
+        detail:
+          "OCR、语音与大模型三类外部服务的集成方式，可作为 AI 应用落地与方案演示的技术样例。",
+      },
+    ],
+    caseSnippet: {
+      context: "家庭库存靠人工记忆，容易过期浪费；手动录入效率低，采购决策缺乏数据支撑。",
+      action:
+        "搭建库存、采购、设置三模块；集成 OCR 识别保质期、语音录入与 DeepSeek 生成清单；用 AlarmManager 保证后台提醒准时送达。",
+      result:
+        "形成录入、提醒、采购的闭环；完成 5 张表与 6 次版本迁移，验证了多外部服务集成与本地数据演进的稳定性。",
+    },
+    deliveryStandards: [
+      "版本可追溯：APK 按版本号发布，保留变更说明与可回滚安装包。",
+      "数据可迁移：导入导出格式兼容历史版本，升级前提示备份。",
+      "外部服务降级：OCR / 语音 / AI 接口异常时回退手动录入，不阻塞主流程。",
+      "隐私说明：以本地存储为主，明确权限用途与数据范围。",
+      "回归清单：发布前覆盖录入、提醒、导出与图表等核心路径。",
+    ],
+  },
   gallery: [
     { src: "images/projects/pixel-life/inventory.png", caption: "库存管理主页" },
     { src: "images/projects/pixel-life/item-form.png", caption: "录入库存 · 拍照识别保质期" },

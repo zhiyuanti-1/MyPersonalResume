@@ -33,11 +33,26 @@ export type ProjectSummary = {
   cover: string;
 };
 
+export type CapabilityDimension = {
+  title: string;
+  summary: string;
+  evidence: string[];
+  tags: string[];
+};
+
+export type BusinessLanding = {
+  caseLabel: string;
+  scenarios: { title: string; detail: string }[];
+  caseSnippet: { context: string; action: string; result: string };
+  deliveryStandards: string[];
+};
+
 export type ProjectDetail = ProjectSummary & {
   overview: string;
   background: string[];
   challenges: { title: string; detail: string }[];
   metrics: { label: string; value: string }[];
   architecture?: { label: string; nodes: string[]; note?: string }[];
+  business?: BusinessLanding;
   gallery?: { src: string; caption: string }[];
 };

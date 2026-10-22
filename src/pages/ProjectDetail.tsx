@@ -30,7 +30,9 @@ export function ProjectDetail() {
 
   const architecture = project.architecture ?? [];
   const gallery = project.gallery ?? [];
-  const metricsIndex = gallery.length > 0 ? "04" : "03";
+  const business = project.business;
+  const galleryIndex = business ? "04" : "03";
+  const metricsIndex = String(3 + (business ? 1 : 0) + (gallery.length > 0 ? 1 : 0)).padStart(2, "0");
 
   return (
     <main className="mx-auto w-full max-w-5xl overflow-x-hidden px-6 pb-24 pt-20 sm:px-8 sm:pt-28">
@@ -153,10 +155,76 @@ export function ProjectDetail() {
         </section>
       </Reveal>
 
+      {business ? (
+        <Reveal>
+          <section className="mt-16">
+            <SectionHeading
+              index="03"
+              title="业务与落地"
+              subtitle="同一套技术能力，在真实业务中如何被理解、推进与交付。"
+            />
+            <div className="grid gap-8 lg:grid-cols-[1.15fr_1fr]">
+              <div className="border border-rule p-6">
+                <span className="label text-xs font-medium text-accent">业务场景 / SCENARIOS</span>
+                <ul className="mt-5 space-y-5">
+                  {business.scenarios.map((scenario, index) => (
+                    <li key={scenario.title} className="grid gap-2 sm:grid-cols-[auto_1fr] sm:gap-3">
+                      <span className="pt-0.5 font-mono text-[10px] tracking-[0.2em] text-accent">
+                        {String(index + 1).padStart(2, "0")}
+                      </span>
+                      <div>
+                        <h4 className="display text-lg leading-snug text-ink">{scenario.title}</h4>
+                        <p className="mt-1 text-sm leading-relaxed text-muted">{scenario.detail}</p>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="border border-rule p-6">
+                <span className="label text-xs font-medium text-accent">{business.caseLabel}</span>
+                <dl className="mt-5 space-y-4">
+                  <div>
+                    <dt className="label text-[10px] text-muted">背景</dt>
+                    <dd className="mt-1 text-sm leading-relaxed text-muted">
+                      {business.caseSnippet.context}
+                    </dd>
+                  </div>
+                  <div>
+                    <dt className="label text-[10px] text-muted">动作</dt>
+                    <dd className="mt-1 text-sm leading-relaxed text-muted">
+                      {business.caseSnippet.action}
+                    </dd>
+                  </div>
+                  <div>
+                    <dt className="label text-[10px] text-muted">结果</dt>
+                    <dd className="mt-1 text-sm leading-relaxed text-ink">
+                      {business.caseSnippet.result}
+                    </dd>
+                  </div>
+                </dl>
+              </div>
+            </div>
+            <div className="mt-10 border-t border-rule pt-6">
+              <span className="label text-xs font-medium text-ink">
+                实施交付标准 / DELIVERY CHECKLIST
+              </span>
+              <ul className="mt-4 grid gap-3 sm:grid-cols-2">
+                {business.deliveryStandards.map((standard) => (
+                  <li key={standard} className="flex gap-3 text-sm leading-relaxed text-muted">
+                    <span className="mt-2.5 h-px w-3 flex-none bg-accent" aria-hidden="true" />
+                    <span>{standard}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </section>
+        </Reveal>
+      ) : null}
+
       {gallery.length > 0 ? (
         <Reveal>
           <section className="mt-16">
-            <SectionHeading index="03" title="界面截图" subtitle="项目实际页面截图。" />
+            <SectionHeading index={galleryIndex} title="界面截图" subtitle="项目实际页面截图。" />
             <div className="grid gap-8 sm:grid-cols-2">
               {gallery.map((shot) => (
                 <figure key={shot.src}>
