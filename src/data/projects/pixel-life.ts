@@ -41,4 +41,14 @@ export const pixelLife: ProjectDetail = {
     { label: "外部服务", nodes: ["百度 OCR", "百度语音", "DeepSeek API"] },
     { label: "提醒", nodes: ["AlarmManager 后台定时提醒"] },
   ],
+  gallery: [
+    { src: "images/projects/pixel-life/inventory.png", caption: "库存管理主页" },
+    { src: "images/projects/pixel-life/item-form.png", caption: "录入库存 · 拍照识别保质期" },
+    { src: "images/projects/pixel-life/category-dialog.png", caption: "自定义分类 · 图标与颜色" },
+    { src: "images/projects/pixel-life/templates.png", caption: "内置保质期系统模板" },
+    { src: "images/projects/pixel-life/purchase.png", caption: "智能采购 · 使用统计" },
+    { src: "images/projects/pixel-life/purchase-chart.png", caption: "消耗量柱状图 · Canvas 自绘" },
+    { src: "images/projects/pixel-life/trend-line.png", caption: "单品每日使用趋势折线图" },
+    { src: "images/projects/pixel-life/recipe-purchase.png", caption: "菜谱生成采购清单" },
+  ],
 };

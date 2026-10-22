@@ -1,6 +1,6 @@
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { HashRouter, Route, Routes, useLocation } from "react-router-dom";
-import { ScrollToTop } from "./components/ScrollToTop";
+import { ScrollRestoration } from "./components/ScrollRestoration";
 import { Home } from "./pages/Home";
 import { NotFound } from "./pages/NotFound";
 import { ProjectDetail } from "./pages/ProjectDetail";
@@ -19,6 +19,7 @@ function AnimatedRoutes() {
         exit={{ opacity: 0 }}
         transition={{ duration: reduceMotion ? 0 : 0.2, ease: "easeOut" }}
       >
+        <ScrollRestoration pathname={location.pathname} />
         <Routes location={location}>
           <Route path="/" element={<Home />} />
           <Route path="/project/:slug" element={<ProjectDetail />} />
@@ -32,7 +33,6 @@ function AnimatedRoutes() {
 export default function App() {
   return (
     <HashRouter>
-      <ScrollToTop />
       <AnimatedRoutes />
     </HashRouter>
   );
